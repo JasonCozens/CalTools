@@ -8,6 +8,7 @@ import icalendar.parser
 import icalendar.prop
 import xcal.ijconvert
 import json
+import yaml
 
 
 
@@ -132,4 +133,8 @@ END:VCALENDAR"""
                 []
             ]]
         ]
+        jcal = json.dumps(input)
         self.assertEqual(json.dumps(input,indent=2), expected)
+
+        print(yaml.safe_dump(json.loads(jcal)))
+
