@@ -27,7 +27,7 @@ class IJConvertTest(unittest.TestCase):
         icalendar.vCalAddress
 
     def test_example(self):
-        ical_str = """BEGIN:X
+        ical_str = """BEGIN:VCALENDAR
 CALSCALE:GREGORIAN
 PRODID:-//Example Inc.//Example Calendar//EN
 VERSION:2.0
@@ -138,3 +138,18 @@ END:VCALENDAR"""
 
         print(yaml.safe_dump(json.loads(jcal)))
 
+    def test_cal_from_ical(self):
+        ical_str = """BEGIN:VCALENDAR
+CALSCALE:GREGORIAN
+PRODID:-//Example Inc.//Example Calendar//EN
+VERSION:2.0
+BEGIN:VEVENT
+DTSTAMP:20080205T191224Z
+DTSTART:20081006
+SUMMARY:Planning meeting
+UID:4088E990AD89CB3DBB484909
+END:VEVENT
+END:VCALENDAR"""
+        cal = icalendar.Calendar.from_ical(ical_str.encode().replace(b'\n',b'\r\n'))
+        for c in cal.walk('VEVENT'):
+            print(c.decoded('DTSTART'))
