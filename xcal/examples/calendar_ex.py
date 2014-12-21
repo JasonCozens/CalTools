@@ -67,3 +67,17 @@ class NewCalendarExample(unittest.TestCase):
         self.assertEqual(list(cal.items()), [('NAME', vText('value'))])
         self.assertEqual(list(cal.keys()), ['NAME'])
         self.assertEqual(list(cal.values()), [vText('value')])
+
+    def test_new_calendar_to_ical(self):
+        """The ical output for an empty Calendar object.
+
+        :return:
+        """
+        # Arrange.
+        cal = icalendar.Calendar()
+        # Act.
+        ical = cal.to_ical()
+        # Assert.
+        self.assertEqual(ical, b'BEGIN:VCALENDAR\r\nEND:VCALENDAR\r\n')
+
+    
