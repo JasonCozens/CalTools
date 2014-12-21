@@ -80,4 +80,22 @@ class NewCalendarExample(unittest.TestCase):
         # Assert.
         self.assertEqual(ical, b'BEGIN:VCALENDAR\r\nEND:VCALENDAR\r\n')
 
-    
+    def test_calendar_with_required_properties(self):
+        """The ical output for an empty Calendar object.
+
+        :return:
+        """
+        # Arrange.
+        cal = icalendar.Calendar()
+        # Act.
+        cal.add('version', '2.0')
+        cal.add('prodid', 'test.com/abc')
+        ical = cal.to_ical()
+        # Assert.
+        expected = (
+            b'BEGIN:VCALENDAR\r\n' +
+            b'VERSION:2.0\r\n' +
+            b'PRODID:test.com/abc\r\n' +
+            b'END:VCALENDAR\r\n'
+        )
+        self.assertEqual(ical, expected)
