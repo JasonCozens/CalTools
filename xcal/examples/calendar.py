@@ -43,3 +43,12 @@ class NewCalendarExample(unittest.TestCase):
         self.assertFalse(cal.has_key('version'))
         self.assertFalse(cal.has_key('calscale'))
         self.assertFalse(cal.has_key('method'))
+
+    def test_instance_fields(self):
+        cal = icalendar.Calendar()
+        # Assert.
+        self.assertFalse(cal.is_broken)
+        self.assertEqual(len(cal.items()), 0)
+        self.assertEqual(len(cal.keys()), 0)
+        self.assertEqual(cal.subcomponents, [])
+        self.assertEqual(len(cal.values()), 0)
