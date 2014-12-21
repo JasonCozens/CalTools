@@ -1,6 +1,9 @@
 __author__ = 'Jason'
 
 import icalendar
+from icalendar import (
+    vText,
+)
 import unittest
 
 
@@ -45,6 +48,7 @@ class NewCalendarExample(unittest.TestCase):
         self.assertFalse(cal.has_key('method'))
 
     def test_instance_fields(self):
+        # Act.
         cal = icalendar.Calendar()
         # Assert.
         self.assertFalse(cal.is_broken)
@@ -52,3 +56,14 @@ class NewCalendarExample(unittest.TestCase):
         self.assertEqual(len(cal.keys()), 0)
         self.assertEqual(cal.subcomponents, [])
         self.assertEqual(len(cal.values()), 0)
+
+    def test_add_one_item(self):
+        # Arrange.
+        cal = icalendar.Calendar()
+        # Act.
+        cal.add('name', 'value')
+        # Assert.
+        self.assertEqual(len(cal.items()), 1)
+        self.assertEqual(list(cal.items()), [('NAME', vText('value'))])
+        self.assertEqual(list(cal.keys()), ['NAME'])
+        self.assertEqual(list(cal.values()), [vText('value')])
