@@ -134,8 +134,8 @@ END:VCALENDAR"""
             ]]
         ]
         jcal = json.dumps(input)
-        self.assertEqual(json.dumps(input,indent=2), expected)
-
+        self.assertEqual(json.dumps(input, indent=2), expected)
+        print(jcal)
         print(yaml.safe_dump(json.loads(jcal)))
 
     def test_cal_from_ical(self):
