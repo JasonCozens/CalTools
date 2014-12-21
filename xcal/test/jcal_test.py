@@ -31,3 +31,17 @@ class JCalTest(unittest.TestCase):
         ]
         self.assertListEqual(j_cal, expected)
         print(j_cal)
+
+    def test_calendar_with_sub_component(self):
+        # Arrange.
+        cal = icalendar.Calendar()
+        cal.add_component(icalendar.Event())
+        # Act.
+        j_cal = jcal.JCal.from_calendar(cal)
+        # Assert.
+        expected = ["vcalendar",
+                    [],
+                    [["vevent", [], []]]
+        ]
+        self.assertListEqual(j_cal, expected)
+        print(j_cal)

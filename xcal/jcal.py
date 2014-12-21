@@ -1,5 +1,6 @@
 __author__ = 'Jason'
 
+
 class JCal():
 
     @classmethod
@@ -7,4 +8,7 @@ class JCal():
         properties = []
         for key in cal.keys():
             properties.append([key.lower(), {}, 'text', cal.decoded(key)])
-        return [cal.name.lower(), properties, []]
+        components = []
+        for sub in cal.subcomponents:
+            components.append(["vevent", [], []])
+        return [cal.name.lower(), properties, components]
