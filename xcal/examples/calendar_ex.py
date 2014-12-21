@@ -81,7 +81,7 @@ class NewCalendarExample(unittest.TestCase):
         self.assertEqual(ical, b'BEGIN:VCALENDAR\r\nEND:VCALENDAR\r\n')
 
     def test_calendar_with_required_properties(self):
-        """The ical output for an empty Calendar object.
+        """The ical output for a Calendar object with required properties.
 
         :return:
         """
@@ -99,3 +99,31 @@ class NewCalendarExample(unittest.TestCase):
             b'END:VCALENDAR\r\n'
         )
         self.assertEqual(ical, expected)
+
+    def test_calendar_has_key(self):
+        # Arrange.
+        cal = icalendar.Calendar()
+        # Pre-Assert.
+        self.assertFalse(cal.has_key('version'))
+        # Act.
+        cal.add('version', '2.0')
+        # Post-Assert.
+        self.assertTrue(cal.has_key('version'))
+
+    def test_calendar_decoded(self):
+        # Arrange.
+        cal = icalendar.Calendar()
+        # Act.
+        cal.add('version', '2.0')
+        # Post-Assert.
+        self.assertEqual(cal.decoded('version'), b'2.0')
+
+    def test_calendar_content_lines(self):
+        # Arrange.
+        cal = icalendar.Calendar()
+        # Act.
+        cal.add('version', '2.0')
+        # Post-Assert.
+        self.assertListEqual(
+            cal.content_lines(),
+            ['BEGIN:VCALENDAR', 'VERSION:2.0', 'END:VCALENDAR', ''])
