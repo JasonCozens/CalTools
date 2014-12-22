@@ -6,15 +6,29 @@ import json
 class JCal():
 
     @classmethod
-    def from_calendar(cls, cal):
+    def from_calendar(cls, calendar):
+        """Convert a Calendar instance to a json string.
+
+        :param calendar: icalendar.Calendar
+        :return: json str
+        """
+        return json.dumps(JCal._from_component(calendar))
+
+    @classmethod
+    def _from_component(cls, component):
+        """Convert a Component to a list representation.
+
+        :param component: icalendar.Component
+        :return: list
+        """
         properties = []
-        for key in cal.keys():
+        for key in component.keys():
             properties.append(
                 [key.lower(),
                     {},
                  'text',
-                 cal.decoded(key).decode()])
+                 component.decoded(key).decode()])
         components = []
-        for sub in cal.subcomponents:
-            components.append(["vevent", [], []])
-        return json.dumps([cal.name.lower(), properties, components])
+        for sub_component in component.subcomponents:
+            components.append(JCal._from_component(sub_component))
+        return [component.name.lower(), properties, components]
