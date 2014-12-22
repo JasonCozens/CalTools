@@ -2,7 +2,7 @@ __author__ = 'Jason'
 
 import icalendar
 import unittest
-from xcal import jcal
+from cal_tools import jcal
 import json
 
 

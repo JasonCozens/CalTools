@@ -6,7 +6,7 @@ import icalendar.cal
 import icalendar.parser_tools
 import icalendar.parser
 import icalendar.prop
-import xcal.ijconvert
+import cal_tools.ijconvert
 import json
 import yaml
 
@@ -20,7 +20,7 @@ class IJConvertTest(unittest.TestCase):
         cal = icalendar.Calendar()
         i_cal = cal.to_ical()
         # Act.
-        j_cal = xcal.ijconvert.ICalJCalConverter().convert(i_cal)
+        j_cal = cal_tools.ijconvert.ICalJCalConverter().convert(i_cal)
         # Assert.
         self.assertEqual(j_cal, expected_result)
 
