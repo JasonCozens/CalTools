@@ -20,7 +20,7 @@ class JCalTest(unittest.TestCase):
         # Arrange.
         cal = icalendar.Calendar()
         cal.add('version', '2.0')
-        cal.add('prodid', 'test.com/abc')
+        p = cal.add('prodid', 'test.com/abc')
         # Act.
         j_cal = jcal.JCal.from_calendar(cal)
         # Assert.

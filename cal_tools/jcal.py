@@ -21,6 +21,14 @@ class JCal():
         :param component: icalendar.Component
         :return: list
         """
+        properties = JCal._from_prop(component)
+        components = []
+        for sub_component in component.subcomponents:
+            components.append(JCal._from_component(sub_component))
+        return [component.name.lower(), properties, components]
+
+    @classmethod
+    def _from_prop(cls, component):
         properties = []
         for key in component.keys():
             properties.append(
@@ -28,7 +36,4 @@ class JCal():
                     {},
                  'text',
                  component.decoded(key).decode()])
-        components = []
-        for sub_component in component.subcomponents:
-            components.append(JCal._from_component(sub_component))
-        return [component.name.lower(), properties, components]
+        return properties
