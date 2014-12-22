@@ -1,5 +1,7 @@
 __author__ = 'Jason'
 
+import json
+
 
 class JCal():
 
@@ -7,8 +9,12 @@ class JCal():
     def from_calendar(cls, cal):
         properties = []
         for key in cal.keys():
-            properties.append([key.lower(), {}, 'text', cal.decoded(key)])
+            properties.append(
+                [key.lower(),
+                    {},
+                 'text',
+                 cal.decoded(key).decode()])
         components = []
         for sub in cal.subcomponents:
             components.append(["vevent", [], []])
-        return [cal.name.lower(), properties, components]
+        return json.dumps([cal.name.lower(), properties, components])
