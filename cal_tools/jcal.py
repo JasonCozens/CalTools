@@ -31,6 +31,7 @@ class JCal():
     def _from_prop(cls, component):
         properties = []
         for key in component.keys():
+            prop = component[key]
             properties.append(
                 [key.lower(),
                     {},

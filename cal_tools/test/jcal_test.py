@@ -20,7 +20,7 @@ class JCalTest(unittest.TestCase):
         # Arrange.
         cal = icalendar.Calendar()
         cal.add('version', '2.0')
-        p = cal.add('prodid', 'test.com/abc')
+        cal.add('prodid', 'test.com/abc')
         # Act.
         j_cal = jcal.JCal.from_calendar(cal)
         # Assert.
@@ -46,3 +46,21 @@ class JCalTest(unittest.TestCase):
         ]
         self.assertListEqual(json.loads(j_cal), expected)
         print(j_cal)
+
+    def test_vbool_property(self):
+        # Arrange.
+        expected = (
+            b'BEGIN:VCALENDAR\r\n' +
+            b'X-NON-SMOKING:TRUE\r\n' +
+            b'END:VCALENDAR\r\n'
+        )
+        component = icalendar.Calendar.from_ical(expected)
+        # component = icalendar.Calendar()
+        # component.add('x-non-smoking', True, encode=False)
+        # Act.
+        prop = jcal.JCal._from_prop(component)
+        # Assert.
+        self.assertEqual(prop, [['x-non-smoking', {}, 'boolean', True]])
+        self.assertEqual(
+            json.dumps(prop),
+            '[["x-non-smoking", {}, "boolean", true]]')
