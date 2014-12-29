@@ -53,7 +53,7 @@ class Examples5545(unittest.TestCase):
 
     def test_3_6_1_opaque_event(self):
         # Arrange.
-        self.ical_str = (
+        ical_str = (
             'BEGIN:VEVENT\r\n'
             'UID:19970901T130000Z-123401@example.com\r\n'
             'DTSTAMP:19970901T130000Z\r\n'
@@ -65,7 +65,7 @@ class Examples5545(unittest.TestCase):
             'END:VEVENT\r\n'
         )
         # Act.
-        cal = icalendar.Calendar.from_ical(self.ical_str)
+        cal = icalendar.Calendar.from_ical(ical_str)
         # Assert.
         self.assertEqual(cal.name, 'VEVENT')
         self.assertEqual(len(cal.items()), 7)
@@ -73,7 +73,7 @@ class Examples5545(unittest.TestCase):
 
     def test_3_6_1_transparent_event(self):
         # Arrange.
-        self.ical_str = (
+        ical_str = (
             'BEGIN:VEVENT\r\n'
             'UID:19970901T130000Z-123402@example.com\r\n'
             'DTSTAMP:19970901T130000Z\r\n'
@@ -86,7 +86,7 @@ class Examples5545(unittest.TestCase):
             'END:VEVENT\r\n'
         )
         # Act.
-        cal = icalendar.Calendar.from_ical(self.ical_str)
+        cal = icalendar.Calendar.from_ical(ical_str)
         # Assert.
         self.assertEqual(cal.name, 'VEVENT')
         self.assertEqual(len(cal.items()), 8)
