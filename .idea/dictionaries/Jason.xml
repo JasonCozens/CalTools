@@ -2,6 +2,8 @@
   <dictionary name="Jason">
     <words>
       <w>crlf</w>
+      <w>iana</w>
+      <w>vevent</w>
     </words>
   </dictionary>
 </component>
