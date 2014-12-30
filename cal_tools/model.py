@@ -63,6 +63,8 @@ class CalendarModel():
             raise AssertionError(ARG_TYPE_INCORRECT.format(Calendar))
         if not 'PRODID' in calendar.keys():
             raise AssertionError(REQ_PROP_MISSING.format('PRODID'))
+        if not 'VERSION' in calendar.keys():
+            raise AssertionError(REQ_PROP_MISSING.format('VERSION'))
 
 class EventModel():
 
