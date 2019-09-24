@@ -19,4 +19,4 @@ straight forawrd in python so it made sense to look at the chain::
 * [RFC 6321](http://tools.ietf.org/html/rfc6321)
 * [RFC 5350](http://tools.ietf.org/html/rfc6350)
 * [RFC 6868](http://tools.ietf.org/html/rfc6868)
-* [RFC 7529](http://tools.ietf.org/html/rfc75229) (supercedes: [RFC 7625](http://tools.ietf.org/html/rfc7625))
+* [RFC 7529](http://tools.ietf.org/html/rfc7529) (supercedes: [RFC 7265](http://tools.ietf.org/html/rfc7265))
